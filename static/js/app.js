@@ -4,7 +4,7 @@ function buildCharts(sample){
         let resultArray = samples.filter((sampleDictionary) => sampleDictionary.id ==sample);
         let result = resultArray[0];
 
-        let otuIDs = resulst.otu_ids;
+        let otuIDs = result.otu_ids;
         let otuLabels = result.otu_labels;
         let sampleValues = result.sample_values;
 
@@ -53,11 +53,11 @@ function buildCharts(sample){
 
 function buildMetadata(sample){
     d3.json("https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1/14-Interactive-Web-Visualizations/02-Homework/samples.json").then((data) =>{
-        let metadata = datt.metadata;
+        let metadata = data.metadata;
 
         let resultArray = metadata.filter(sampleDictionary => sampleDictionary.id == sample);
 
-        let resulst = resultArray[0];
+        let result = resultArray[0];
 
         let PANEL = d3.select("#sample-metadata");
 
@@ -87,6 +87,10 @@ function init(){
     })
 
 
+}
+function optionChanged(newSample){
+    buildCharts(newSample);
+    buildMetadata(newSample);
 }
 
 init();
